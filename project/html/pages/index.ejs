@@ -13,8 +13,9 @@
     <% include ../helpers/navbar %>
 -->
   
-    <h1>Weather Forecast</h1>
-    <h3>Enter your location below</h3>
+    <h1>What's the weather?</h1>
+   <input id="search-button" class="search" type="text" placeholder="Enter your location">
+  <button type="button" onClick="searchWeather()">Search</button>
   </div>
 <!--
   <p>Click on the button for a surprise.</p>
@@ -23,14 +24,22 @@
 
   <div id="image"></div>
 -->
-  <input class="search" type="text" placeholder="Enter city name">
-  <button type="button" onClick="searchWeather()">Search</button>
+  
   <div class="error-message"></div>
-  <div class="city"></div>
-  <!-- <div class="location"></div> -->
-  <div class="temp"></div>
-  <div class="weather"></div>
-  <div id="day-list"></div>
+  <div class="current container">
+  	<div class="col-sm">
+  		<div class="label"></div>
+	  	<div class="current-icon"></div>
+	  	<div class="temp"></div>
+	  	<div class="weather"></div>
+	 </div>
+  </div>
+  
+  <!-- <div class="location"></div><div class="city"></div> -->
+
+  <div id="day-list" class="container">
+  	<div class="row"></div>
+  </div>
   <!--
   <button type="button" onClick="handleSignIn()">Login</button>
 

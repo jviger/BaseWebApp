@@ -2,6 +2,10 @@ $(document).ready(function(){
 
 	//getPosts();
 	//getWeather(45,45);
+	document.getElementById("search-button").addEventListener("keydown", function(e) {
+    // Enter is pressed
+    if (e.keyCode == 13) { searchWeather(); }
+}, false);
 
 });
 
@@ -16,8 +20,11 @@ function getLocation(city) {
 	$('.error-message').text('');
 	$('.city').text('');
 	$('.location').text('');
+	$('div.current div.label').text('');
 	$('.temp').text('');
 	$('.weather').text('');
+	$('div.current div.current-icon').text('');
+	$('#day-list div.row').text('');
 
 	//var url = "https://api.darksky.net/forecast/"+darkSkyApiKey+"/"+lat+","+long;
 
@@ -42,8 +49,10 @@ function getWeather(lat,lon) {
     var url = "/weather?q="+lat+","+lon+'&a='+darkSkyApiKey;
 	$.ajax(url,{success: function(data){
 		console.log(data);
-		$('.temp').text('Current Temperature: ' + Math.round(data.currently.temperature) + '°F');
-		$('.weather').text('Current Conditions: ' + data.currently.summary);
+		//$('div.current div.label').append("Currently");
+		$('div.current div.current-icon').append("<img class='' src='https://darksky.net/images/weather-icons/" + data.currently.icon + ".png'>");
+		$('div.current div.temp').append("<h4>" + Math.round(data.currently.temperature) + '°F</h4>');
+		$('div.current div.weather').append('<h4>' + data.currently.summary + '</h4>');
 
 
 		for(var day in data.daily.data){
@@ -75,7 +84,7 @@ function getWeather(lat,lon) {
 	  		var dayDay = dayDate.getDate();
 	  		var dayTitle = dayDate.getDay();
 
-	  		$("#day-list").append("<div class='day-" + day +"'><div class='day-name'><strong>" + dayName[dayTitle] + "</strong>, " + month[dayMonth] + ' ' + dayDay + "</div><div class='icon'><img src='https://darksky.net/images/weather-icons/" + dayWeather.icon + ".png'></div><div class='temperature'>"+ Math.round(dayWeather.temperatureMin) + " - " + Math.round(dayWeather.temperatureMax) + "°F </div><hr><div class='day-summary'>" + dayWeather.summary + "</div></div>");
+	  		$("#day-list div.row").append("<div class='day-" + day +" col-sm'><div class='day-name'><strong>" + dayName[dayTitle] + "</strong>, " + month[dayMonth] + ' ' + dayDay + "</div><div class='icon'><img class='' src='https://darksky.net/images/weather-icons/" + dayWeather.icon + ".png'></div><div class='temperature'>"+ Math.round(dayWeather.temperatureMin) + " - " + Math.round(dayWeather.temperatureMax) + "°F </div><hr><div class='day-summary'>" + dayWeather.summary + "</div></div>");
 
 	  }
 
