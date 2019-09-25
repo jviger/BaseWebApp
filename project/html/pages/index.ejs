@@ -1,23 +1,48 @@
 <html lang="en">
 <head>
-    <% include ../helpers/head %>
+
+     <% include ../helpers/head %> 
+    
 </head>
 
 <body>
   <!-- the classes 'page-header' and 'btn btn-dark' create bootstrap components.  -->
   <!-- Check out more components here: http://getbootstrap.com/components/ -->
   <div class="page-header">
-
+  	<!--
+    <% include ../helpers/navbar %>
+-->
   
-    <h1>Sup</h1>
+    <h1>Find Your Current Weather</h1>
   </div>
-
+<!--
   <p>Click on the button for a surprise.</p>
 
   <button onClick="showPicture()" class="btn btn-dark">Click me</button>
 
   <div id="image"></div>
-  
+-->
+  <input class="search" type="text" placeholder="Enter city name">
+  <button type="button" onClick="searchWeather()">Search</button>
+  <div class="error-message"></div>
+  <div class="city"></div>
+  <div class="location"></div>
+  <div class="temp"></div>
+  <div class="weather"></div>
+  <div id="day-list"></div>
+  <!--
+  <button type="button" onClick="handleSignIn()">Login</button>
+
+  <form onSubmit="handleMessageFormSubmit();" action="#">
+  Title:</br>
+  	<input id="post-title"></br>
+  Body:</br>
+  	<textarea id="post-body"></textarea>
+  	<button>Submit</button>
+  </form>
+
+  <div id="post-listings"></div>
+  -->
 </body>
 
 </html>
