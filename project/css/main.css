@@ -23,12 +23,43 @@ button {
 
 .page-header {
   background-color: #87ceeb;
-  padding-top: 40px;
-  padding-bottom: 80px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   color: #ffffff;
 }
 
 #image img {
   height: 200px;
   margin-top: 60px;
+}
+
+#day-list {
+  font-size: 11px;
+}
+#day-list .temperature {
+  font-size: 17px;
+  font-weight: bold;
+}
+#day-list img {
+  width: 80%;
+}
+#day-list hr {
+  width: 30px;
+  border-color: red;
+  border-width: 2px;
+}
+
+#day-list {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+#day-list div[class^="day-"] {
+  float:left;
+  width: 14%;
+}
+
+div.day-0 {
+  display: none;
 }

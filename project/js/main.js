@@ -75,7 +75,7 @@ function getWeather(lat,lon) {
 	  		var dayDay = dayDate.getDate();
 	  		var dayTitle = dayDate.getDay();
 
-	  		$("#day-list").append("<div class='day'><div class='day-name'><strong>" + dayName[dayTitle] + "</strong>, " + month[dayMonth] + ' ' + dayDay + "</div><div class='temperature'>"+ Math.round(dayWeather.temperatureMin) + " - " + Math.round(dayWeather.temperatureMax) + "°F </div><div class='icon'><img src='https://darksky.net/images/weather-icons/" + dayWeather.icon + ".png'></div></div>");
+	  		$("#day-list").append("<div class='day-" + day +"'><div class='day-name'><strong>" + dayName[dayTitle] + "</strong>, " + month[dayMonth] + ' ' + dayDay + "</div><div class='icon'><img src='https://darksky.net/images/weather-icons/" + dayWeather.icon + ".png'></div><div class='temperature'>"+ Math.round(dayWeather.temperatureMin) + " - " + Math.round(dayWeather.temperatureMax) + "°F </div><hr><div class='day-summary'>" + dayWeather.summary + "</div></div>");
 
 	  }
 
