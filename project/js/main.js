@@ -50,13 +50,13 @@ function getWeather(lat,lon) {
 	$.ajax(url,{success: function(data){
 		console.log(data);
 		//$('div.current div.label').append("Currently");
-		$('div.current div.current-icon').append("<img class='' src='https://darksky.net/images/weather-icons/" + data.currently.icon + ".png'>");
+		$('div.current div.current-icon').append("<img class='img-fluid' src='https://darksky.net/images/weather-icons/" + data.currently.icon + ".png'>");
 		$('div.current div.temp').append("<h4>" + Math.round(data.currently.temperature) + '°F</h4>');
 		$('div.current div.weather').append('<h4>' + data.currently.summary + '</h4>');
 
 
-		for(var day in data.daily.data){
-			var month = new Array();
+		for(let day in data.daily.data){
+			let month = new Array();
 			month[0] = "Jan";
 			month[1] = "Feb";
 			month[2] = "Mar";
@@ -69,7 +69,7 @@ function getWeather(lat,lon) {
 			month[9] = "Oct";
 			month[10] = "Nov";
 			month[11] = "Dec";
-			var dayName = new Array();
+			let dayName = new Array();
 			dayName[0] = "Sunday";
 			dayName[1] = "Monday";
 			dayName[2] = "Tuesday";
@@ -78,13 +78,13 @@ function getWeather(lat,lon) {
 			dayName[5] = "Friday";
 			dayName[6] = "Saturday";
 			
-	  		var dayWeather = data.daily.data[day];
-	  		var dayDate = new Date(dayWeather.time * 1000)
-	  		var dayMonth = dayDate.getMonth();
-	  		var dayDay = dayDate.getDate();
-	  		var dayTitle = dayDate.getDay();
+	  		let dayWeather = data.daily.data[day];
+	  		let dayDate = new Date(dayWeather.time * 1000)
+	  		let dayMonth = dayDate.getMonth();
+	  		let dayDay = dayDate.getDate();
+	  		let dayTitle = dayDate.getDay();
 
-	  		$("#day-list div.row").append("<div class='day-" + day +" col-sm'><div class='day-name'><strong>" + dayName[dayTitle] + "</strong>, " + month[dayMonth] + ' ' + dayDay + "</div><div class='icon'><img class='' src='https://darksky.net/images/weather-icons/" + dayWeather.icon + ".png'></div><div class='temperature'>"+ Math.round(dayWeather.temperatureMin) + " - " + Math.round(dayWeather.temperatureMax) + "°F </div><hr><div class='day-summary'>" + dayWeather.summary + "</div></div>");
+	  		$("#day-list div.row").append("<div class='day-" + day +" col-sm'><div class='day-name'><strong>" + dayName[dayTitle] + "</strong>, " + month[dayMonth] + ' ' + dayDay + "</div><div class='icon'><img class='img-fluid' src='https://darksky.net/images/weather-icons/" + dayWeather.icon + ".png'></div><div class='temperature'>"+ Math.round(dayWeather.temperatureMin) + " - " + Math.round(dayWeather.temperatureMax) + "°F </div><hr><div class='day-summary'>" + dayWeather.summary + "</div></div>");
 
 	  }
 
