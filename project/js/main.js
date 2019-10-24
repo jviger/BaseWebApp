@@ -1,7 +1,5 @@
 $(document).ready(function(){
 
-	//getPosts();
-	//getWeather(45,45);
 	document.getElementById("search-button").addEventListener("keydown", function(e) {
     // Enter is pressed
     if (e.keyCode == 13) { searchWeather(); }
@@ -25,6 +23,7 @@ function getLocation(city) {
 	$('.weather').text('');
 	$('div.current div.current-icon').text('');
 	$('#day-list div.row').text('');
+
 
 	//var url = "https://api.darksky.net/forecast/"+darkSkyApiKey+"/"+lat+","+long;
 
@@ -53,7 +52,7 @@ function getWeather(lat,lon) {
 		//$('div.current div.current-icon').append("<img class='img-fluid' src='https://darksky.net/images/weather-icons/" + data.currently.icon + ".png'>");
 		//$('div.current div.temp').append("<h4>" + Math.round(data.currently.temperature) + '°F</h4>');
 		//$('div.current div.weather').append('<h4>' + data.currently.summary + '</h4>');
-
+		$('#day-list .row').text('');
 
 		for(let day in data.daily.data){
 			let month = new Array();
@@ -84,14 +83,14 @@ function getWeather(lat,lon) {
 	  		let dayDay = dayDate.getDate();
 	  		let dayTitle = dayDate.getDay();
 
-	  		$("#day-list div.row").append("<div class='day-" + day +" col-sm'><div class='day-name'><strong>" + dayName[dayTitle] + "</strong>, " + month[dayMonth] + ' ' + dayDay + "</div><div class='icon'><img class='img-fluid' src='https://darksky.net/images/weather-icons/" + dayWeather.icon + ".png'></div><div class='temperature'>"+ Math.round(dayWeather.temperatureMin) + " - " + Math.round(dayWeather.temperatureMax) + "°F </div><hr><div class='day-summary'>" + dayWeather.summary + "</div><div class='units'><div><strong>PRECIP:</strong> "+Math.round(dayWeather.precipProbability * 100) +"%</div><div><strong>WIND:</strong> "+ dayWeather.windSpeed + " mph</div><div><strong>SUNRISE:</strong> "+ getTime(dayWeather.sunriseTime) + "</div><div><strong>SUNSET:</strong> " + getTime(dayWeather.sunsetTime) + "</div></div></div>");
+	  		$("#day-list div.row").append("<div class='day-" + day +" col-sm'><div class='day-name'><strong>" + dayName[dayTitle] + "</strong>, " + month[dayMonth] + ' ' + dayDay + "</div><div class='icon'><img class='img-fluid' src='https://darksky.net/images/weather-icons/" + dayWeather.icon + ".png'></div><div class='temperature'>"+ Math.round(dayWeather.temperatureMin) + " - " + Math.round(dayWeather.temperatureMax) + "°F </div><hr><div class='details'><div class='day-summary'>" + dayWeather.summary + "</div><div class='units'><div><strong>PRECIP:</strong> "+Math.round(dayWeather.precipProbability * 100) +"%</div><div><strong>WIND:</strong> "+ dayWeather.windSpeed + " mph</div><div><strong>SUNRISE:</strong> "+ getTime(dayWeather.sunriseTime) + "</div><div><strong>SUNSET:</strong> " + getTime(dayWeather.sunsetTime) + "</div></div></div></div>");
 
 
 	  }
 
-	  $(".day-0").addClass('col-4');
+	  $(".day-0").addClass('col-3');
 	  $(".day-0").removeClass('col-sm');
-
+	  
 			
 	}, error: function(error){
 		$('.error-message').text('An error occurred. Please enter a new location.')
@@ -107,127 +106,19 @@ function getWeather(lat,lon) {
 
 function searchWeather() {
 
-	var searchQuery = $(".search").val();
+	let searchQuery = $(".search").val();
 	getLocation(searchQuery);
 }
 
 function getTime(x){
 
-	var date = new Date(x*1000);
+	let date = new Date(x*1000);
 	// Hours part from the timestamp
-	var hours = date.getHours();
+	let hours = date.getHours();
 	// Minutes part from the timestamp
-	var minutes = "0" + date.getMinutes();
+	let minutes = "0" + date.getMinutes();
 	// Seconds part from the timestamp
 
 	return hours + ":" + minutes;
 
 }
-
-
-/* OLD SERVICE
-
-
-function getWeather(city) {
-
-	$('.error-message').text('');
-	$('.city').text('');
-	$('.temp').text('');
-
-	var url = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&units=imperial&APPID="+apiKey;
-	$.ajax(url,{success: function(data){
-		console.log(data);
-		$('.city').text(data.name);
-		$('.temp').text(data.main.temp);	
-	}, error: function(error){
-		$('.error-message').text('An error occurred.')
-		
-	}})
-
-}
-
-function searchWeather() {
-
-	var searchQuery = $(".search").val();
-	getWeather(searchQuery);
-}
-*/
-
-/*
-
-
-function handleSignIn() {
-	var provider = new firebase.auth.GoogleAuthProvider();
-
-	firebase.auth().signInWithPopup(provider).then(function(result) {
-  // This gives you a Google Access Token. You can use it to access the Google API.
-  var token = result.credential.accessToken;
-  // The signed-in user info.
-  var user = result.user;
-  console.log(user.email);
-  // ...
-}).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // The email of the user's account used.
-  var email = error.email;
-  // The firebase.auth.AuthCredential type that was used.
-  var credential = error.credential;
-  // ...
-});
-
-}
-*/
-/*
-
-function addMessage(postTitle, postBody){
-
-	var postData = {
-		title: postTitle,
-		body: postBody
-	}
-
-	var database = firebase.database().ref("posts");
-
-	var newPostRef = database.push();
-	newPostRef.set(postData, function(error) {
-    if (error) {
-      // The write failed...
-    } else {
-      window.location.reload();
-    }
-  });
-
-
-
-
-}
-
-function handleMessageFormSubmit(){
-
-	var postTitle = $("#post-title").val();
-	var postBody = $("#post-body").val();
-	addMessage(postTitle, postBody);
-
-
-}
-
-
-
-
-function getPosts(){
-	  return firebase.database().ref('posts').once('value').then(function(snapshot) {
-	  var posts = snapshot.val();
-	  console.log(posts);
-	  
-	  for(var postKey in posts){
-	  		var post = posts[postKey];
-	  		$("#post-listings").append("<div>" + post.title + " - " + post.body);
-
-	  }
-	 });
-
-}
-
-*/

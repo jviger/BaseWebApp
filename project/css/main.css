@@ -42,6 +42,14 @@ button {
 .units {
   text-align: left;
 }
+
+
+.day-0 .details {
+
+  text-align: center;
+}
+
+
 #day-list .temperature {
   font-size: 17px;
   font-weight: bold;
@@ -52,6 +60,21 @@ button {
   border-color: red;
   border-width: 2px;
 }
+#day-list .day-0 .temperature{
+
+  font-size: 20px;
+}
+#day-list .day-0 .details{
+
+  font-size: 16px;
+  margin: auto;
+  width: 50%;
+}
+#day-list .day-0 .day-name{
+
+  font-size: 16px;
+}
+
 
 
 div.day-7 {
