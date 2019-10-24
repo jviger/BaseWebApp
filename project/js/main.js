@@ -90,7 +90,7 @@ function getWeather(lat,lon) {
 
 	  $(".day-0").addClass('col-3');
 	  $(".day-0").removeClass('col-sm');
-	  
+
 			
 	}, error: function(error){
 		$('.error-message').text('An error occurred. Please enter a new location.')
@@ -116,9 +116,14 @@ function getTime(x){
 	// Hours part from the timestamp
 	let hours = date.getHours();
 	// Minutes part from the timestamp
-	let minutes = "0" + date.getMinutes();
+	let minutes = date.getMinutes();
+	if(minutes < 10){minutes = "0" + minutes;}
 	// Seconds part from the timestamp
+	let midDay = "AM";
+	if(hours > 11){midDay = "PM"; hours-=12;}
+	if(hours == 0){hours = 12};
 
-	return hours + ":" + minutes;
+
+	return hours + ":" + minutes + " " + midDay;
 
 }
