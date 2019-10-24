@@ -22,7 +22,7 @@ button {
 }
 
 .page-header {
-  background-color: #87ceeb;
+  background-color: #23374d;
   padding-top: 20px;
   padding-bottom: 20px;
   color: #ffffff;
@@ -34,9 +34,14 @@ button {
   text-align: left;
 }
 
+#search {
+  background-color: #e5e5e5;
+  color: #000000;
+}
 
 #day-list {
   font-size: 11px;
+  background-color: #e5e5e5;
 }
 
 .units {
@@ -73,6 +78,11 @@ button {
 #day-list .day-0 .day-name{
 
   font-size: 16px;
+}
+#day-list .day-0 {
+
+  color: #ffffff;
+  background-color: #1089ff ;
 }
 
 
