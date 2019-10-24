@@ -50,9 +50,9 @@ function getWeather(lat,lon) {
 	$.ajax(url,{success: function(data){
 		console.log(data);
 		//$('div.current div.label').append("Currently");
-		$('div.current div.current-icon').append("<img class='img-fluid' src='https://darksky.net/images/weather-icons/" + data.currently.icon + ".png'>");
-		$('div.current div.temp').append("<h4>" + Math.round(data.currently.temperature) + '°F</h4>');
-		$('div.current div.weather').append('<h4>' + data.currently.summary + '</h4>');
+		//$('div.current div.current-icon').append("<img class='img-fluid' src='https://darksky.net/images/weather-icons/" + data.currently.icon + ".png'>");
+		//$('div.current div.temp').append("<h4>" + Math.round(data.currently.temperature) + '°F</h4>');
+		//$('div.current div.weather').append('<h4>' + data.currently.summary + '</h4>');
 
 
 		for(let day in data.daily.data){
@@ -84,15 +84,17 @@ function getWeather(lat,lon) {
 	  		let dayDay = dayDate.getDate();
 	  		let dayTitle = dayDate.getDay();
 
-	  		$("#day-list div.row").append("<div class='day-" + day +" col-sm'><div class='day-name'><strong>" + dayName[dayTitle] + "</strong>, " + month[dayMonth] + ' ' + dayDay + "</div><div class='icon'><img class='img-fluid' src='https://darksky.net/images/weather-icons/" + dayWeather.icon + ".png'></div><div class='temperature'>"+ Math.round(dayWeather.temperatureMin) + " - " + Math.round(dayWeather.temperatureMax) + "°F </div><hr><div class='day-summary'>" + dayWeather.summary + "</div></div>");
+	  		$("#day-list div.row").append("<div class='day-" + day +" col-sm'><div class='day-name'><strong>" + dayName[dayTitle] + "</strong>, " + month[dayMonth] + ' ' + dayDay + "</div><div class='icon'><img class='img-fluid' src='https://darksky.net/images/weather-icons/" + dayWeather.icon + ".png'></div><div class='temperature'>"+ Math.round(dayWeather.temperatureMin) + " - " + Math.round(dayWeather.temperatureMax) + "°F </div><hr><div class='day-summary'>" + dayWeather.summary + "</div><div class='units'><div><strong>PRECIP:</strong> "+Math.round(dayWeather.precipProbability * 100) +"%</div><div><strong>WIND:</strong> "+ dayWeather.windSpeed + " mph</div><div><strong>SUNRISE:</strong> "+ getTime(dayWeather.sunriseTime) + "</div><div><strong>SUNSET:</strong> " + getTime(dayWeather.sunsetTime) + "</div></div></div>");
+
 
 	  }
 
-
+	  $(".day-0").addClass('col-4');
+	  $(".day-0").removeClass('col-sm');
 
 			
 	}, error: function(error){
-		$('.error-message').text('An error occurred. Try entering a new location.')
+		$('.error-message').text('An error occurred. Please enter a new location.')
 		
 	}})
 
@@ -109,7 +111,18 @@ function searchWeather() {
 	getLocation(searchQuery);
 }
 
+function getTime(x){
 
+	var date = new Date(x*1000);
+	// Hours part from the timestamp
+	var hours = date.getHours();
+	// Minutes part from the timestamp
+	var minutes = "0" + date.getMinutes();
+	// Seconds part from the timestamp
+
+	return hours + ":" + minutes;
+
+}
 
 
 /* OLD SERVICE
@@ -199,6 +212,8 @@ function handleMessageFormSubmit(){
 
 
 }
+
+
 
 
 function getPosts(){

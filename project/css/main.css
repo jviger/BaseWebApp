@@ -29,9 +29,18 @@ button {
 }
 
 
+.day-summary {
+
+  text-align: left;
+}
+
 
 #day-list {
   font-size: 11px;
+}
+
+.units {
+  text-align: left;
 }
 #day-list .temperature {
   font-size: 17px;
