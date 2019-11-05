@@ -24,6 +24,11 @@ app.get('/projects', function(request, response) {
   response.render('pages/projects');
 });
 
+app.post('/webhook', function(request, response) {
+  var body = request;
+  console.log(body);
+});
+
 //app.get('/weather', function(request, response) {
 //  response.render('pages/weather');
 //});
