@@ -29,7 +29,7 @@ app.post('/webhook', function(request, response) {
   console.log(body);
 });
 app.get('/webhook', function(request, response) {
-  var body = request;
+  //var body = request;
    response.render('pages/about');
 });
 //app.get('/weather', function(request, response) {
