@@ -31,11 +31,11 @@ app.post('/webhook', function(request, response) {
   response.send({hello:"World"});
   //response.render('pages/index');
 });
-app.get('/webhook', function(request, response) {
+/*app.get('/webhook', function(request, response) {
   var body = request;
   console.log(body.data);
    response.render('pages/index');
-});
+});*/
 //app.get('/weather', function(request, response) {
 //  response.render('pages/weather');
 //});
