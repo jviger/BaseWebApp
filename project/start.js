@@ -25,12 +25,14 @@ app.get('/projects', function(request, response) {
 });
 
 app.post('/webhook', function(request, response) {
-  //var body = request;
+  var body = request;
   console.log(body);
+  response.render('pages/index');
 });
 app.get('/webhook', function(request, response) {
-  //var body = request;
-   response.render('pages/about');
+  var body = request;
+  console.log(body);
+   response.render('pages/index');
 });
 //app.get('/weather', function(request, response) {
 //  response.render('pages/weather');
