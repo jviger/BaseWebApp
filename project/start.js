@@ -6,7 +6,7 @@ var app = express();
 
 app.set('port', (process.env.PORT || 5000));
 
-app.use(express.static(__dirname));
+//app.use(express.static(__dirname));
 
 // views is directory for all template files
 app.set('views', __dirname + '/html');
@@ -28,7 +28,7 @@ app.post('/webhook', function(request, response) {
   //var body = request;
   //console.log(body.data);
   response.status(200);
-  response.send({hello:"World"});
+  response.send({hello:hello});
   //response.render('pages/index');
 });
 /*app.get('/webhook', function(request, response) {
