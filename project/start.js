@@ -28,7 +28,10 @@ app.post('/webhook', function(request, response) {
   var body = request;
   console.log(body);
 });
-
+app.get('/webhook', function(request, response) {
+  var body = request;
+  console.log(body);
+});
 //app.get('/weather', function(request, response) {
 //  response.render('pages/weather');
 //});
