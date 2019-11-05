@@ -27,7 +27,7 @@ app.get('/projects', function(request, response) {
 app.post('/webhook', function(request, response) {
   //var body = request;
   //console.log(body.data);
-  response.status(200);
+  response.status(404);
   response.send({hello:hello});
   //response.render('pages/index');
 });
